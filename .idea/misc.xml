@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Important/MyApplication/iCareDBSYS32_MOBILE/app/src/main/res/drawable/app_home_button.xml" value="0.2564814814814815" />
+        <entry key="..\:/Important/MyApplication/iCareDBSYS32_MOBILE/app/src/main/res/drawable/app_home_button_light_blue.xml" value="0.37864583333333335" />
+        <entry key="..\:/Important/MyApplication/iCareDBSYS32_MOBILE/app/src/main/res/drawable/app_home_button_plain.xml" value="0.37864583333333335" />
+        <entry key="..\:/Important/MyApplication/iCareDBSYS32_MOBILE/app/src/main/res/drawable/menu_style.xml" value="0.37864583333333335" />
+        <entry key="..\:/Important/MyApplication/iCareDBSYS32_MOBILE/app/src/main/res/drawable/textfield_gray.xml" value="0.37864583333333335" />
+        <entry key="..\:/Important/MyApplication/iCareDBSYS32_MOBILE/app/src/main/res/layout/activity_app_home.xml" value="0.3625" />
+        <entry key="..\:/Important/MyApplication/iCareDBSYS32_MOBILE/app/src/main/res/layout/activity_contact.xml" value="0.3625" />
+        <entry key="..\:/Important/MyApplication/iCareDBSYS32_MOBILE/app/src/main/res/layout/activity_login.xml" value="0.33" />
+        <entry key="..\:/Important/MyApplication/iCareDBSYS32_MOBILE/app/src/main/res/layout/activity_main.xml" value="0.3625" />
+        <entry key="..\:/Important/MyApplication/iCareDBSYS32_MOBILE/app/src/main/res/layout/activity_navigation.xml" value="0.20052083333333334" />
+        <entry key="..\:/Important/MyApplication/iCareDBSYS32_MOBILE/app/src/main/res/layout/activity_pet_information.xml" value="0.25" />
+        <entry key="..\:/Important/MyApplication/iCareDBSYS32_MOBILE/app/src/main/res/layout/activity_profile.xml" value="0.3625" />
+        <entry key="..\:/Important/MyApplication/iCareDBSYS32_MOBILE/app/src/main/res/layout/activity_services.xml" value="0.3625" />
+        <entry key="..\:/Important/MyApplication/iCareDBSYS32_MOBILE/app/src/main/res/layout/card_layout.xml" value="0.25" />
+        <entry key="..\:/Important/MyApplication/iCareDBSYS32_MOBILE/app/src/main/res/layout/fragment_contact.xml" value="0.3625" />
+        <entry key="..\:/Important/MyApplication/iCareDBSYS32_MOBILE/app/src/main/res/layout/fragment_contact_us.xml" value="0.20052083333333334" />
+        <entry key="..\:/Important/MyApplication/iCareDBSYS32_MOBILE/app/src/main/res/layout/fragment_pet_information.xml" value="0.20052083333333334" />
+        <entry key="..\:/Important/MyApplication/iCareDBSYS32_MOBILE/app/src/main/res/layout/fragment_profile_ui.xml" value="0.20052083333333334" />
+        <entry key="..\:/Important/MyApplication/iCareDBSYS32_MOBILE/app/src/main/res/layout/fragment_services.xml" value="0.33" />
+        <entry key="..\:/Important/MyApplication/iCareDBSYS32_MOBILE/app/src/main/res/menu/menu.xml" value="0.3625" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.33" />
+      </ProjectState>
+    </option>
+  </component>
+</project>

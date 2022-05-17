@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/pet_information"
+        android:icon="@drawable/pet_icon"
+        android:title="@string/Pets"/>
+    <item
+        android:id="@+id/services"
+        android:icon="@drawable/heart_icon"
+        android:title="@string/Service"/>
+    <item
+        android:id="@+id/contact_us"
+        android:icon="@drawable/contact_icon"
+        android:title="@string/Contact"/>
+    <item
+        android:id="@+id/profile_ui"
+        android:icon="@drawable/profile_icon"
+        android:title="@string/Profile"/>
+
+</menu>

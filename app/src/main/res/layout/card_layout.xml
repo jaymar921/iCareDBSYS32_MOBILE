@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    android:layout_margin="5dp"
+    android:background="@color/white"
+    app:cardCornerRadius="15dp"
+    app:cardElevation="3dp"
+    app:contentPadding="5dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/relativeLayout"
+        android:padding="1dp">
+
+        <ImageView
+            android:layout_width="256px"
+            android:layout_height="256px"
+            android:id="@+id/card_view_image"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/card_view_text_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Pet Name"
+            android:textColor="@color/cyan"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toRightOf="@id/card_view_image"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/card_view_text_breed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Breed"
+            app:layout_constraintLeft_toRightOf="@id/card_view_text_name"
+            app:layout_constraintStart_toEndOf="@+id/card_view_image"
+            app:layout_constraintTop_toBottomOf="@+id/card_view_text_name" />
+
+        <TextView
+            android:id="@+id/card_view_text_specie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Specie"
+            app:layout_constraintLeft_toRightOf="@id/card_view_text_name"
+            app:layout_constraintStart_toEndOf="@+id/card_view_image"
+            app:layout_constraintTop_toBottomOf="@id/card_view_text_breed" />
+
+        <TextView
+            android:id="@+id/card_view_text_gender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Gender"
+            app:layout_constraintLeft_toRightOf="@id/card_view_text_name"
+            app:layout_constraintStart_toEndOf="@+id/card_view_image"
+            app:layout_constraintTop_toBottomOf="@+id/card_view_text_specie" />
+
+        <TextView
+            android:id="@+id/card_view_text_blood_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Blood Type"
+            app:layout_constraintLeft_toRightOf="@id/card_view_text_name"
+            app:layout_constraintStart_toEndOf="@+id/card_view_image"
+            app:layout_constraintTop_toBottomOf="@+id/card_view_text_gender" />
+
+        <TextView
+            android:id="@+id/card_view_text_weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="16dp"
+            android:text="Weight"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

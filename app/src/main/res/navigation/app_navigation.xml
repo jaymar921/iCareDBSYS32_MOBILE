@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_navigation"
+    app:startDestination="@id/pet_information">
+    <fragment
+        android:id="@+id/pet_information"
+        android:name="me.jaymar.icaredbsys32_mobile.pet_information"
+        android:label="fragment_pet_information"
+        tools:layout="@layout/fragment_pet_information" >
+        <argument
+            android:name="accountId"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/contact_us"
+        android:name="me.jaymar.icaredbsys32_mobile.contact_us"
+        android:label="fragment_contact_us"
+        tools:layout="@layout/fragment_contact_us" />
+    <fragment
+        android:id="@+id/services"
+        android:name="me.jaymar.icaredbsys32_mobile.services"
+        android:label="fragment_services"
+        tools:layout="@layout/fragment_services" />
+    <fragment
+        android:id="@+id/profile_ui"
+        android:name="me.jaymar.icaredbsys32_mobile.profile_ui"
+        android:label="fragment_profile_ui"
+        tools:layout="@layout/fragment_profile_ui" />
+</navigation>
