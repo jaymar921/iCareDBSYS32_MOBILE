@@ -20,7 +20,7 @@
         tools:layout="@layout/fragment_contact_us" />
     <fragment
         android:id="@+id/services"
-        android:name="me.jaymar.icaredbsys32_mobile.services"
+        android:name="me.jaymar.icaredbsys32_mobile.Services"
         android:label="fragment_services"
         tools:layout="@layout/fragment_services" />
     <fragment
@@ -28,4 +28,9 @@
         android:name="me.jaymar.icaredbsys32_mobile.profile_ui"
         android:label="fragment_profile_ui"
         tools:layout="@layout/fragment_profile_ui" />
+    <fragment
+        android:id="@+id/serviceRequest"
+        android:name="me.jaymar.icaredbsys32_mobile.ServiceRequest"
+        android:label="fragment_service_request"
+        tools:layout="@layout/fragment_service_request" />
 </navigation>

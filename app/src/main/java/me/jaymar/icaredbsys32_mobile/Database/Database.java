@@ -5,6 +5,7 @@ import android.os.StrictMode;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -58,17 +59,16 @@ public class Database {
             if(connection == null)
                 throw new Exception("Could not connect to database...");
 
-            String query = "SELECT * FROM login_credentials where username=? and password=?";
+            String query = "{call getAccountByUsername(?,?)}";
 
             if(Utility.isEmail(username)) {
-                System.out.println("is email");
-                query = "SELECT * FROM login_credentials where email=? and password=?";
+                query = "{call getAccountByEmail(?,?)}";
             }
-            PreparedStatement ps = connection.prepareStatement(query);
-            ps.setString(1,username);
-            ps.setString(2, Utility.getMD5Hash(password));
+            CallableStatement callableStatement = connection.prepareCall(query);
+            callableStatement.setString(1,username);
+            callableStatement.setString(2, Utility.getMD5Hash(password));
 
-            ResultSet resultSet = ps.executeQuery();
+            ResultSet resultSet = callableStatement.executeQuery();
             LoginCredentials loginCredentials = null;
             if(resultSet.next()){
                 loginCredentials = new LoginCredentials(
@@ -85,11 +85,11 @@ public class Database {
             if(loginCredentials == null)
                 return null;
 
-            query = "SELECT * FROM account WHERE acc_id = ?";
-            ps = connection.prepareStatement(query);
-            ps.setString(1, loginCredentials.getAcc_id());
+            query = "{call getAccountById(?)}";
+            callableStatement = connection.prepareCall(query);
+            callableStatement.setString(1, loginCredentials.getAcc_id());
 
-            resultSet = ps.executeQuery();
+            resultSet = callableStatement.executeQuery();
             if(resultSet.next()){
                 Account account = new Account(
                         resultSet.getString("acc_id"),
@@ -161,7 +161,7 @@ public class Database {
 
 
 
-            String query = "select name,age,gender,breed,specie,blood_type,weight from pet where owner_id = ?";
+            String query = "select pet_id,name,age,gender,breed,specie,blood_type,weight from pet where owner_id = ?";
 
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1,user_id);
@@ -170,6 +170,7 @@ public class Database {
 
             while (resultSet.next()){
                 PetData pet = new PetData(
+                        resultSet.getString("pet_id"),
                         resultSet.getString("name"),
                         resultSet.getInt("age"),
                         resultSet.getString("gender").charAt(0),
@@ -185,5 +186,46 @@ public class Database {
 
         }catch (Exception ignore){}
         return petData;
+    }
+
+    public static double getServicePrice(String code){
+        try {
+            Connection connection = Connect();
+
+            String query = "SELECT price from service where service_code = ?";
+
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1,code);
+
+            ResultSet rs = ps.executeQuery();
+
+            connection.close();
+
+            while (rs.next()){
+                return rs.getDouble("price");
+            }
+
+        }catch (Exception ignore){
+
+        }
+        return 0;
+    }
+
+    public static int generateRecordId(){
+        try{
+            Connection connection = Connect();
+            String query = "select * from service_records order by record_id desc";
+
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+
+            connection.close();
+
+            while (resultSet.next()){
+                return resultSet.getInt("record_id")+1;
+            }
+
+        }catch (Exception ignore){}
+        return 0;
     }
 }

@@ -2,23 +2,20 @@ package me.jaymar.icaredbsys32_mobile.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatDialogFragment
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
-import androidx.navigation.ui.setupWithNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import me.jaymar.icaredbsys32_mobile.*
-import me.jaymar.icaredbsys32_mobile.Database.Database
-import me.jaymar.icaredbsys32_mobile.data.PetData
-import me.jaymar.icaredbsys32_mobile.util.RecyclerAdapter
+import me.jaymar.icaredbsys32_mobile.data.ServiceData
+import me.jaymar.icaredbsys32_mobile.interfaces.Communicator
+import me.jaymar.icaredbsys32_mobile.util.RecyclerAdapterPets
 
-class Navigation : AppCompatActivity() {
+class Navigation : AppCompatActivity(), Communicator {
 
     private var layoutManager: RecyclerView.LayoutManager? = null
-    private var adapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>? = null
-    var accountId: String = "-";
+    private var adapterPets: RecyclerView.Adapter<RecyclerAdapterPets.ViewHolder>? = null
+    private var accountId: String = "-";
+    private val serviceFragment = Services()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,10 +26,13 @@ class Navigation : AppCompatActivity() {
 
 
         val petFragment = pet_information()
-        val serviceFragment = services()
+
         val contactFragment = contact_us()
         val profileFragment = profile_ui()
         petFragment.accountId = accountId
+        serviceFragment.accountId = accountId
+        contactFragment.accountId = accountId
+        profileFragment.accountId = accountId
 
 
         makeCurrentFragment(petFragment)
@@ -55,27 +55,16 @@ class Navigation : AppCompatActivity() {
             commit()
         }
 
+    override fun passData(data: ServiceData) {
+        val bundle = Bundle()
+        bundle.putString("service_code", data.service_code)
 
-    /*
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.menu_navigation)
-        val navigationController = findNavController(R.id.ui_fragment)
+        val transaction = this.supportFragmentManager.beginTransaction()
+        val serviceFragment = ServiceRequest(accountId, this)
 
-        bottomNavigationView.setupWithNavController(navigationController)
+        serviceFragment.arguments = bundle
 
-        val pets:List<PetData> = Database.getPetInformation(accountId)
-
-        layoutManager = LinearLayoutManager(this)
-
-        var recyclerView = findViewById<RecyclerView>(R.id.petsRecyclerView)
-
-        recyclerView.layoutManager = layoutManager
-
-        adapter = RecyclerAdapter()
-
-        for(data in pets)
-            (adapter as RecyclerAdapter).pushData(data)
-
-        // (adapter as RecyclerAdapter).pushData(PetData("",0,' ',"","","",0.0))
-        recyclerView.adapter = adapter
-     */
+        transaction.replace(R.id.ui_fragment, serviceFragment)
+        transaction.commit()
+    }
 }

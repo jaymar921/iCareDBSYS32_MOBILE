@@ -11,4 +11,14 @@
     <string name="Contact">Contact</string>
     <string name="Profile">Profile</string>
     <string name="Service">Service</string>
+    <string name="Services">Available Services</string>
+    <string name="Submit">Submit</string>
+    <string name="Cancel">Cancel</string>
+    <string name="ServiceCode">Service Type</string>
+    <string name="ServicePrice">Service Price</string>
+    <string name="VaxType">Vaccine Type</string>
+    <string name="Owner">Pet Owner</string>
+    <string name="ScheduleDate">Schedule Date</string>
+    <string name="Pet">Pet</string>
+    <string name="Venue">Venue</string>
 </resources>

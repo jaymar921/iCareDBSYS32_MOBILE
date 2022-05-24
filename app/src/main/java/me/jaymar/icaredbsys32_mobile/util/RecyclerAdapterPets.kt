@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import me.jaymar.icaredbsys32_mobile.R
 import me.jaymar.icaredbsys32_mobile.data.PetData
 
-class RecyclerAdapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
+class RecyclerAdapterPets: RecyclerView.Adapter<RecyclerAdapterPets.ViewHolder>() {
 
     private val pet_information = mutableListOf<PetData>()
     private val pet_icon = mutableListOf<Int>()
@@ -18,12 +18,12 @@ class RecyclerAdapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
         pet_information.add(pet_data)
         pet_icon.add(R.drawable.pet_icon)
     }
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerAdapterPets.ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.card_layout, parent, false)
         return ViewHolder(v)
     }
 
-    override fun onBindViewHolder(holder: RecyclerAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RecyclerAdapterPets.ViewHolder, position: Int) {
 
         holder.petName.text = pet_information[position].name
         holder.breed.text = pet_information[position].breed

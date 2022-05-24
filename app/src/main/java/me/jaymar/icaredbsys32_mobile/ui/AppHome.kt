@@ -1,10 +1,12 @@
 package me.jaymar.icaredbsys32_mobile.ui
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import me.jaymar.icaredbsys32_mobile.R
+import java.net.URI
 
 class AppHome : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,7 +37,9 @@ class AppHome : AppCompatActivity() {
 
         // add on click listener on register Button
         registerButton.setOnClickListener{
-
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse("http://192.168.1.50:8000/register")
+            startActivity(intent)
         }
     }
 }

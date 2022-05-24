@@ -7,12 +7,12 @@ import androidx.recyclerview.widget.RecyclerView
 import me.jaymar.icaredbsys32_mobile.Database.Database
 import me.jaymar.icaredbsys32_mobile.R
 import me.jaymar.icaredbsys32_mobile.data.PetData
-import me.jaymar.icaredbsys32_mobile.util.RecyclerAdapter
+import me.jaymar.icaredbsys32_mobile.util.RecyclerAdapterPets
 
 class PetInformation : AppCompatActivity() {
 
     private var layoutManager: RecyclerView.LayoutManager? = null
-    private var adapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>? = null
+    private var adapterPets: RecyclerView.Adapter<RecyclerAdapterPets.ViewHolder>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,12 +28,12 @@ class PetInformation : AppCompatActivity() {
 
         recyclerView.layoutManager = layoutManager
 
-        adapter = RecyclerAdapter()
+        adapterPets = RecyclerAdapterPets()
 
         for(data in pets)
-            (adapter as RecyclerAdapter).pushData(data)
+            (adapterPets as RecyclerAdapterPets).pushData(data)
 
         // adapter as RecyclerAdapter).pushData(PetData("",0,' ',"","","",0.0))
-        recyclerView.adapter = adapter
+        recyclerView.adapter = adapterPets
     }
 }

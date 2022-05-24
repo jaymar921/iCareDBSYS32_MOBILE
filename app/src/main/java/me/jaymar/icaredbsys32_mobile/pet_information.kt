@@ -1,17 +1,15 @@
 package me.jaymar.icaredbsys32_mobile
 
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import me.jaymar.icaredbsys32_mobile.Database.Database
 import me.jaymar.icaredbsys32_mobile.data.PetData
-import me.jaymar.icaredbsys32_mobile.util.RecyclerAdapter
+import me.jaymar.icaredbsys32_mobile.util.RecyclerAdapterPets
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -25,7 +23,7 @@ private const val ARG_PARAM2 = "param2"
 class pet_information() : Fragment() {
 
     private var layoutManager: RecyclerView.LayoutManager? = null
-    private var adapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>? = null
+    private var adapterPets: RecyclerView.Adapter<RecyclerAdapterPets.ViewHolder>? = null
     var accountId: String = "-";
 
     override fun onCreateView(
@@ -42,13 +40,13 @@ class pet_information() : Fragment() {
 
         recyclerView.layoutManager = layoutManager
 
-        adapter = RecyclerAdapter()
+        adapterPets = RecyclerAdapterPets()
 
         for(data in pets)
-            (adapter as RecyclerAdapter).pushData(data)
+            (adapterPets as RecyclerAdapterPets).pushData(data)
 
         // (adapter as RecyclerAdapter).pushData(PetData("",0,' ',"","","",0.0))
-        recyclerView.adapter = adapter
+        recyclerView.adapter = adapterPets
         return view
     }
 

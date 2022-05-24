@@ -1,6 +1,7 @@
 package me.jaymar.icaredbsys32_mobile.data
 
 data class PetData(
+    var id: String,
     var name: String,
     var age: Int,
     var gender: Char,

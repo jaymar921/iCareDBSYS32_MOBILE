@@ -23,7 +23,7 @@ class Login : AppCompatActivity() {
 
             val emailString = email.text.toString()
             val passwordString = password.text.toString()
-            Toast.makeText(this, "$emailString $passwordString", Toast.LENGTH_LONG).show()
+
             var account = Database.getAccounts(emailString,passwordString)
             if(account != null) {
                 val intent = Intent(this,Navigation::class.java)
