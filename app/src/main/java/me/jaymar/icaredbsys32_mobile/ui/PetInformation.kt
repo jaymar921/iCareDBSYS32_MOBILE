@@ -20,6 +20,7 @@ class PetInformation : AppCompatActivity() {
 
         val accountId:String = intent.getStringExtra("account_id").toString()
 
+        /*
         val pets:List<PetData> = Database.getPetInformation(accountId)
 
         layoutManager = LinearLayoutManager(this)
@@ -28,12 +29,14 @@ class PetInformation : AppCompatActivity() {
 
         recyclerView.layoutManager = layoutManager
 
-        adapterPets = RecyclerAdapterPets()
+        adapterPets = RecyclerAdapterPets(this)
 
         for(data in pets)
             (adapterPets as RecyclerAdapterPets).pushData(data)
 
         // adapter as RecyclerAdapter).pushData(PetData("",0,' ',"","","",0.0))
         recyclerView.adapter = adapterPets
+
+         */
     }
 }

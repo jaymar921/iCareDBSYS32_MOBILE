@@ -24,6 +24,8 @@ import me.jaymar.icaredbsys32_mobile.data.PetData;
 import me.jaymar.icaredbsys32_mobile.util.Utility;
 
 public class Database {
+
+    @Nullable
     public static Connection Connect(){
         try {
 
@@ -34,16 +36,12 @@ public class Database {
             Class.forName("org.mariadb.jdbc.Driver").newInstance();
 
 
-            System.out.println("Connecting to database...");
-
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 
             StrictMode.setThreadPolicy(policy);
 
             Connection connection = DriverManager.getConnection(url,user,pass);
 
-
-            System.out.println("Connected to database!");
 
             return connection;
         }catch (Exception e){
@@ -54,6 +52,7 @@ public class Database {
 
 
 
+    @Nullable
     public static Data getAccounts(String username, String password){
         try{
             Connection connection = Connect();
@@ -354,4 +353,6 @@ public class Database {
         }catch (Exception ignore){}
         return false;
     }
+
+
 }

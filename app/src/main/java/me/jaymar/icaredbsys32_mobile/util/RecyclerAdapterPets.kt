@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import me.jaymar.icaredbsys32_mobile.R
 import me.jaymar.icaredbsys32_mobile.data.PetData
 
-class RecyclerAdapterPets: RecyclerView.Adapter<RecyclerAdapterPets.ViewHolder>() {
+class RecyclerAdapterPets(private val listener:OnPetClickListener): RecyclerView.Adapter<RecyclerAdapterPets.ViewHolder>() {
 
     private val pet_information = mutableListOf<PetData>()
     private val pet_icon = mutableListOf<Int>()
@@ -51,7 +51,7 @@ class RecyclerAdapterPets: RecyclerView.Adapter<RecyclerAdapterPets.ViewHolder>(
         return pet_information.size
     }
 
-    inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+    inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView), View.OnClickListener{
         var petName: TextView
         var breed: TextView
         var specie: TextView
@@ -68,7 +68,18 @@ class RecyclerAdapterPets: RecyclerView.Adapter<RecyclerAdapterPets.ViewHolder>(
             bloodType = itemView.findViewById(R.id.card_view_text_blood_type)
             weight = itemView.findViewById(R.id.card_view_text_weight)
             icon = itemView.findViewById(R.id.card_view_image)
+            itemView.setOnClickListener(this)
         }
 
+        override fun onClick(p0: View?){
+            val position: Int = adapterPosition
+            if(position != RecyclerView.NO_POSITION)
+                listener.onPetSelected(position)
+        }
+
+    }
+
+    interface OnPetClickListener{
+        fun onPetSelected(position: Int)
     }
 }

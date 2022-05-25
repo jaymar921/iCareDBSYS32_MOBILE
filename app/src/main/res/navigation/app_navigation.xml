@@ -33,4 +33,9 @@
         android:name="me.jaymar.icaredbsys32_mobile.ServiceRequest"
         android:label="fragment_service_request"
         tools:layout="@layout/fragment_service_request" />
+    <fragment
+        android:id="@+id/transaction"
+        android:name="me.jaymar.icaredbsys32_mobile.Transaction"
+        android:label="fragment_transaction"
+        tools:layout="@layout/fragment_transaction" />
 </navigation>

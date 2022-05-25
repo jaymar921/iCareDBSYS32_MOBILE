@@ -26,7 +26,7 @@ class Navigation : AppCompatActivity(), Communicator {
 
 
         val petFragment = pet_information()
-
+        petFragment.controller = this
         val contactFragment = contact_us()
         val profileFragment = profile_ui()
         petFragment.accountId = accountId

@@ -1,8 +1,10 @@
 package me.jaymar.icaredbsys32_mobile.data
 
 import me.jaymar.icaredbsys32_mobile.Database.Database
+import me.jaymar.icaredbsys32_mobile.annotation.GamitNiSya
 import java.util.*
 
+@GamitNiSya
 data class Inquiry(
     var record_id: String,
     var pet_id: String,

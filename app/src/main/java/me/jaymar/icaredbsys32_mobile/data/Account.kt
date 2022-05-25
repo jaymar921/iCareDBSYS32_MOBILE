@@ -1,7 +1,9 @@
 package me.jaymar.icaredbsys32_mobile.data
 
+import me.jaymar.icaredbsys32_mobile.annotation.GamitNiSya
 import java.util.*
 
+@GamitNiSya
 data class Account(
     val acc_id: String,
     var lastname: String,
