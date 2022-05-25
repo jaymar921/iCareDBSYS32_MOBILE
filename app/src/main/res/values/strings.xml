@@ -21,4 +21,13 @@
     <string name="ScheduleDate">Schedule Date</string>
     <string name="Pet">Pet</string>
     <string name="Venue">Venue</string>
+    <string name="inquiries">For more inquiries</string>
+    <string name="municipalities">
+6060 Different municipalities and within Cebu City</string>
+    <string name="contactNo">+91 22-27782183</string>
+    <string name="messenger">\@iCarePetservice@gmail.com</string>
+    <string name="facebook">iCarePetservice@yahoo.com</string>
+    <string name="registry_date">Registry Date</string>
+    <string name="fullname">fullname</string>
+    <string name="update">Update</string>
 </resources>

@@ -1,5 +1,6 @@
 package me.jaymar.icaredbsys32_mobile.data
 
+import me.jaymar.icaredbsys32_mobile.Database.Database
 import java.util.*
 
 data class Inquiry(
@@ -10,4 +11,8 @@ data class Inquiry(
     var venue: String,
     var status: String,
     var remarks: String) {
+
+    fun toInquiryData():InquiryData{
+        return InquiryData(pet_id,Database.getServiceCode(service),schedule_date.toString(),venue,remarks)
+    }
 }

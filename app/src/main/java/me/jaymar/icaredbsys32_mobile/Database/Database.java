@@ -11,12 +11,14 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import me.jaymar.icaredbsys32_mobile.data.Account;
 import me.jaymar.icaredbsys32_mobile.data.Data;
 import me.jaymar.icaredbsys32_mobile.data.Inquiry;
+import me.jaymar.icaredbsys32_mobile.data.InquiryData;
 import me.jaymar.icaredbsys32_mobile.data.LoginCredentials;
 import me.jaymar.icaredbsys32_mobile.data.PetData;
 import me.jaymar.icaredbsys32_mobile.util.Utility;
@@ -67,6 +69,64 @@ public class Database {
             CallableStatement callableStatement = connection.prepareCall(query);
             callableStatement.setString(1,username);
             callableStatement.setString(2, Utility.getMD5Hash(password));
+
+            ResultSet resultSet = callableStatement.executeQuery();
+            LoginCredentials loginCredentials = null;
+            if(resultSet.next()){
+                loginCredentials = new LoginCredentials(
+                        resultSet.getString("login_id"),
+                        resultSet.getString("acc_id"),
+                        resultSet.getString("username"),
+                        resultSet.getString("password"),
+                        resultSet.getString("email"),
+                        resultSet.getString("contact_no")
+                );
+
+            }
+
+            if(loginCredentials == null)
+                return null;
+
+            query = "{call getAccountById(?)}";
+            callableStatement = connection.prepareCall(query);
+            callableStatement.setString(1, loginCredentials.getAcc_id());
+
+            resultSet = callableStatement.executeQuery();
+            if(resultSet.next()){
+                Account account = new Account(
+                        resultSet.getString("acc_id"),
+                        resultSet.getString("lastname"),
+                        resultSet.getString("firstname"),
+                        resultSet.getDate("birthdate"),
+                        resultSet.getString("house_no"),
+                        resultSet.getString("street"),
+                        resultSet.getString("barangay"),
+                        resultSet.getString("city"),
+                        resultSet.getString("zip"),
+                        resultSet.getDate("registry_date")
+                );
+                connection.close();
+
+                return new Data(account,loginCredentials);
+            }
+
+        }catch (Exception e){
+
+        }
+        return new Data(null,null);
+    }
+
+    public static Data getAccounts(String account_id){
+        try{
+            Connection connection = Connect();
+
+            if(connection == null)
+                throw new Exception("Could not connect to database...");
+
+            String query = "{call getLoginCredentialById(?)}";
+
+            CallableStatement callableStatement = connection.prepareCall(query);
+            callableStatement.setString(1,account_id);
 
             ResultSet resultSet = callableStatement.executeQuery();
             LoginCredentials loginCredentials = null;
@@ -188,6 +248,29 @@ public class Database {
         return petData;
     }
 
+    public static String getServiceCode(String description){
+        try {
+            Connection connection = Connect();
+
+            String query = "SELECT service_code from service where description like '%?%'";
+
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1,description);
+
+            ResultSet rs = ps.executeQuery();
+
+            connection.close();
+
+            while (rs.next()){
+                return rs.getString("service_code");
+            }
+
+        }catch (Exception ignore){
+
+        }
+        return "";
+    }
+
     public static double getServicePrice(String code){
         try {
             Connection connection = Connect();
@@ -227,5 +310,48 @@ public class Database {
 
         }catch (Exception ignore){}
         return 0;
+    }
+
+    public static boolean submitInquiry(InquiryData inquiry){
+        try {
+            Connection connection = Connect();
+
+            String query = "INSERT INTO service_records (`record_id`,`pet_id`,`service_code`,`date`,`venue`,`status`,`remarks`) values (?,?,?,?,?,?,?)";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1,generateRecordId());
+            statement.setString(2,inquiry.getPet_id());
+            statement.setString(3,inquiry.getService_code());
+            statement.setString(4,inquiry.getDate());
+            statement.setString(5,inquiry.getVenue());
+            statement.setString(6,"pending");
+            statement.setString(7,inquiry.getRemark());
+
+            statement.executeQuery();
+            connection.close();
+            return true;
+        }catch (Exception ignore){}
+        return false;
+    }
+
+    public static boolean updateAccount(Data data){
+        try{
+            Connection connection = Connect();
+
+            String query = "UPDATE account SET firstname=?, lastname=?, birthdate=?, house_no=?, street=?, barangay=?, city=?, zip=? where acc_id=?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1,data.getAccount().getFirstname());
+            preparedStatement.setString(2,data.getAccount().getLastname());
+            preparedStatement.setString(3,new SimpleDateFormat("yyyy-MM-dd").format(data.getAccount().getBirthdate()));
+            preparedStatement.setString(4,data.getAccount().getHouse_no());
+            preparedStatement.setString(5,data.getAccount().getStreet());
+            preparedStatement.setString(6,data.getAccount().getBarangay());
+            preparedStatement.setString(7,data.getAccount().getCity());
+            preparedStatement.setString(8,data.getAccount().getZip());
+            preparedStatement.setString(9,data.getAccount().getAcc_id());
+
+            preparedStatement.executeQuery();
+            return true;
+        }catch (Exception ignore){}
+        return false;
     }
 }

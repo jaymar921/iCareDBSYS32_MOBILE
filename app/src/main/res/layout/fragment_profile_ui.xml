@@ -1,15 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".profile_ui"
-    android:background="@color/light_blue">
+    android:background="@color/white">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/Profile" />
+        android:id="@+id/parent_layout_profile">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@color/light_blue_1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="132dp"
+            android:src="@drawable/profile_logo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/parent_layout_profile"
+            android:contentDescription="TODO" />
+
+        <TextView
+            android:id="@+id/profile_username_txtView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/email"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+
+        <EditText
+            android:id="@+id/profile_full_name"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="72dp"
+            android:ems="10"
+            android:importantForAutofill="no"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:text="@string/fullname"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_username_txtView" />
+
+        <EditText
+            android:id="@+id/profile_birthdate"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:ems="10"
+            android:hint="@string/registry_date"
+            android:textAlignment="center"
+            android:inputType="date"
+            android:minHeight="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_full_name" />
+
+        <EditText
+            android:id="@+id/profile_address"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:text="Name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_birthdate" />
+
+        <Button
+            android:id="@+id/profile_update_button"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="@string/update"
+            android:background="@drawable/service_form_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_address" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

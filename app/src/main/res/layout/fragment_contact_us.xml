@@ -5,23 +5,159 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".contact_us"
-    android:background="@color/light_gray">
+    android:background="@color/white">
 
-    <!-- TODO: Update blank fragment layout -->
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="92dp"
-            android:text="@string/Contact"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="380dp"
+            android:layout_height="400dp"
+            android:background="@drawable/service_form_background"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/plane"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:textSize="15dp"
+                android:text="@string/municipalities"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:textColor="@color/black"
+                app:layout_constraintHorizontal_bias="0.508"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/phone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/messenger"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="28dp"
+                android:background="@drawable/facebook"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/contactNo"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.491"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/messenger"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:textColor="@color/light_blue"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.488"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/facebook"
+                android:textSize="15dp"
+                android:textColor="@color/light_blue"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView5"
+                app:layout_constraintVertical_bias="0.22" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            android:background="@color/light_blue_1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginLeft="128dp"
+                android:layout_marginTop="76dp"
+                android:layout_marginEnd="128dp"
+                android:background="@drawable/inquiry_icon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/inquiries"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView"
+                app:layout_constraintVertical_bias="0.0" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

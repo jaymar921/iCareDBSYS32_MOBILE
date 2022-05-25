@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import me.jaymar.icaredbsys32_mobile.Database.Database
+import me.jaymar.icaredbsys32_mobile.data.InquiryData
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -38,20 +39,16 @@ class ServiceRequest(private val accountId: String, private val controller: AppC
         vaccineType.isEnabled = false
         serviceType.isEnabled = false
         servicePrice.isEnabled = false
-
         var args = arguments?.getString("service_code").toString()
 
-
+        val vaxTypes = listOf("-","Modified-live (attenuated)","Inactivated (killed)","Recombinant","Toxoid")
+        val vaxAdapter = ArrayAdapter(view.context,R.layout.support_simple_spinner_dropdown_item,vaxTypes)
+        vaxAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item)
+        vaccineType.adapter = vaxAdapter
         when(args){
             "VX" -> {
                 serviceCode = "Pet Vaccination"
                 vaccineType.isEnabled = true
-
-                // set the types of vaccines
-                val vax_types = listOf("Modified-live (attenuated)","Inactivated (killed)","Recombinant","Toxoid")
-                val adapter = ArrayAdapter(view.context,R.layout.support_simple_spinner_dropdown_item,vax_types)
-                adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item)
-                vaccineType.adapter = adapter
             }
             "DM" -> serviceCode = "Pet Deworming"
             "TL" -> serviceCode = "Pet Tubal Ligation"
@@ -112,13 +109,47 @@ class ServiceRequest(private val accountId: String, private val controller: AppC
             services.accountId = accountId
             transaction.replace(R.id.ui_fragment,services)
             transaction.commit()
+            serviceFragment()
         }
 
         submit.setOnClickListener{
+            val serviceCodeValue = args
+            var remarks:String = vaccineType.selectedItem.toString()
+            if(!vaccineType.isEnabled || remarks=="-")
+                remarks = ""
+            val scheduleDateValue = scheduleDate.text.toString()
+            var petId = ""
+            if(petMap.entries.find { it.value == pets.selectedItem }?.key != null)
+                petId = petMap.entries.find { it.value == pets.selectedItem }?.key!!
+            val venueVal = venue.selectedItem.toString()
+
+            val inquiry = InquiryData(
+                petId,
+                serviceCodeValue,
+                scheduleDateValue,
+                venueVal,
+                remarks
+            )
+
+            Toast.makeText(view.context,"Submitting Request",Toast.LENGTH_SHORT).show()
+            if(Database.submitInquiry(inquiry)){
+                Toast.makeText(view.context,"Request Sent",Toast.LENGTH_LONG).show()
+                serviceFragment()
+            }else{
+                Toast.makeText(view.context,"Failed to send request...",Toast.LENGTH_LONG).show()
+            }
 
         }
 
         return view
+    }
+
+    private fun serviceFragment(){
+        val transaction = controller.supportFragmentManager.beginTransaction()
+        val services = Services()
+        services.accountId = accountId
+        transaction.replace(R.id.ui_fragment,services)
+        transaction.commit()
     }
 
 }
