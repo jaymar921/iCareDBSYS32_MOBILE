@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -220,7 +221,7 @@ public class Database {
 
 
 
-            String query = "select pet_id,name,age,gender,breed,specie,blood_type,weight from pet where owner_id = ?";
+            String query = "select pet_id,name,age,gender,breed,specie,blood_type,weight,status from pet where owner_id = ?";
 
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1,user_id);
@@ -238,6 +239,8 @@ public class Database {
                         resultSet.getString("blood_type"),
                         resultSet.getDouble("weight")
                 );
+                if(resultSet.getString("status").contains("REMOVED"))
+                    continue;
                 petData.add(pet);
             }
 
@@ -352,6 +355,18 @@ public class Database {
             return true;
         }catch (Exception ignore){}
         return false;
+    }
+
+    public static void removePet(String id){
+        try {
+            Connection connection = Connect();
+
+            CallableStatement callableStatement = connection.prepareCall("{call logicalRemovePet(?)}");
+            callableStatement.setString(1,id);
+            callableStatement.executeQuery();
+
+            connection.close();
+        }catch (SQLException error){}
     }
 
 

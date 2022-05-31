@@ -3,13 +3,20 @@ package me.jaymar.icaredbsys32_mobile.util
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import me.jaymar.icaredbsys32_mobile.Database.Database
 import me.jaymar.icaredbsys32_mobile.R
+import me.jaymar.icaredbsys32_mobile.RemovedPetUI
 import me.jaymar.icaredbsys32_mobile.data.PetData
 
-class RecyclerAdapterPets(private val listener:OnPetClickListener): RecyclerView.Adapter<RecyclerAdapterPets.ViewHolder>() {
+class RecyclerAdapterPets(private val listener:OnPetClickListener,
+                          private val CONTEXT: AppCompatActivity?): RecyclerView.Adapter<RecyclerAdapterPets.ViewHolder>() {
 
     private val pet_information = mutableListOf<PetData>()
     private val pet_icon = mutableListOf<Int>()
@@ -45,6 +52,14 @@ class RecyclerAdapterPets(private val listener:OnPetClickListener): RecyclerView
             holder.icon.setImageResource(R.drawable.icon_hamster)
         else if(pet_information[position].specie.lowercase().contains("bird") || pet_information[position].specie.lowercase().contains("parrot"))
             holder.icon.setImageResource(R.drawable.icon_bird)
+
+        holder.removeButton.setOnClickListener{
+            Database.removePet(pet_information[position].id)
+            Toast.makeText(holder.itemView.context,"Removed "+pet_information[position].name+" from database",Toast.LENGTH_LONG).show()
+            val t = CONTEXT?.supportFragmentManager?.beginTransaction()
+            t?.replace(R.id.ui_fragment,RemovedPetUI(pet_information[position].name))
+            t?.commit()
+        }
     }
 
     override fun getItemCount(): Int {
@@ -59,6 +74,7 @@ class RecyclerAdapterPets(private val listener:OnPetClickListener): RecyclerView
         var bloodType: TextView
         var weight: TextView
         var icon: ImageView
+        var removeButton: Button
 
         init{
             petName = itemView.findViewById(R.id.card_view_text_name)
@@ -68,6 +84,7 @@ class RecyclerAdapterPets(private val listener:OnPetClickListener): RecyclerView
             bloodType = itemView.findViewById(R.id.card_view_text_blood_type)
             weight = itemView.findViewById(R.id.card_view_text_weight)
             icon = itemView.findViewById(R.id.card_view_image)
+            removeButton = itemView.findViewById(R.id.remove_pet_btn)
             itemView.setOnClickListener(this)
         }
 

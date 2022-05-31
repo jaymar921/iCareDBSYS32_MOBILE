@@ -40,7 +40,7 @@ class pet_information() : Fragment(), RecyclerAdapterPets.OnPetClickListener {
 
         recyclerView.layoutManager = layoutManager
 
-        adapterPets = RecyclerAdapterPets(this)
+        adapterPets = RecyclerAdapterPets(this,controller)
 
         for(data in pets)
             (adapterPets as RecyclerAdapterPets).pushData(data)

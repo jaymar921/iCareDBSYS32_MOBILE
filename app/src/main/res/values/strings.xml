@@ -31,4 +31,5 @@
     <string name="fullname">fullname</string>
     <string name="update">Update</string>
     <string name="transaction">Transactions</string>
+    <string name="remove">Remove</string>
 </resources>

@@ -38,4 +38,9 @@
         android:name="me.jaymar.icaredbsys32_mobile.Transaction"
         android:label="fragment_transaction"
         tools:layout="@layout/fragment_transaction" />
+    <fragment
+        android:id="@+id/removedPetUI"
+        android:name="me.jaymar.icaredbsys32_mobile.RemovedPetUI"
+        android:label="fragment_removed_pet_u_i"
+        tools:layout="@layout/fragment_removed_pet_u_i" />
 </navigation>
